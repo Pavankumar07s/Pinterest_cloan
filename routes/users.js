@@ -1,8 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost:27017/Pinterest")
-// Define the user schema
-const userSchema = new Schema({
+let mongoose =require('mongoose')
+mongoose.connect("mongodb://127.0.0.1:27017/Pinterest");
+//uper wali line se database banega practice name se
+
+
+//schema matlab aappko ye batana banne wlaa har document main kya kya hoga
+
+let userSchema=mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -13,11 +16,9 @@ const userSchema = new Schema({
     required: true,
   },
   posts: [{
-    type: String, // Assuming posts are strings, you can adjust this based on your actual post schema
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Post'
   }],
-  dp: {
-    type: String, // Assuming dp is a URL or file path, adjust accordingly
-  },
   email: {
     type: String,
     required: true,
@@ -29,7 +30,4 @@ const userSchema = new Schema({
   },
 });
 
-// Create the User model
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports=mongoose.model("user",userSchema);//collection banata hai and aage wale naam se banega 
