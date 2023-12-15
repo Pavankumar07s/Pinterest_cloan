@@ -1,4 +1,5 @@
 let mongoose =require('mongoose')
+const plm = require('passport-local-mongoose');
 mongoose.connect("mongodb://127.0.0.1:27017/Pinterest");
 //uper wali line se database banega practice name se
 
@@ -29,5 +30,6 @@ let userSchema=mongoose.Schema({
     required: true,
   },
 });
+userSchema.plugin(plm);
 
 module.exports=mongoose.model("user",userSchema);//collection banata hai and aage wale naam se banega 

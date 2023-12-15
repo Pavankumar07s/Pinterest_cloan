@@ -9,14 +9,20 @@ router.get('/', function(req, res, next) {
 });
 router.get('/createdUser', async function(req, res, next) {
  let createdUser= await userModel.create({
-  username: "Pavan07s",
-  password: "PavanNahiBatayega",
+  username: "Aayushya",
+  password: "Modi",
   posts: [],
-  email:"pawankumar14662693@gmail.com",
-  fullname:"Pavankumar",
+  email:"Aayusyatiwari@gmail.com",
+  fullname:"aayushyaTiwari",
 
  })
  res.send(createdUser)
+});
+router.get('/allUser', async function(req, res, next) {
+ let User= await userModel.
+ findOne({_id:'65789791c2e936a7cbe588ff'})
+ .populate('posts')
+  res.send(User)
 });
 router.get('/createPost',async(req,res)=>{
   let CreatedPost= await postModel.create({
