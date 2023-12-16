@@ -4,7 +4,7 @@ const userModel=require("./users")
 const postModel=require("./post");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-passport.authenticate(new LocalStrategy(userModel.authenticate()))
+passport.use(new LocalStrategy(userModel.authenticate()))
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -53,6 +53,12 @@ userModel.register(userData,req.body.password)
 })
 router.get('/profile',isLoggedIn,(req,res)=>{
   res.send("You are on profile page")
+})
+router.get('/login',(req,res)=>{
+  res.render('login')
+})
+router.get('/register',(req,res)=>{
+    res.render('register')
 })
 //login
 router.post('/login', passport.authenticate('local', {
